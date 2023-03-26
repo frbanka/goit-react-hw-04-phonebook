@@ -24,9 +24,12 @@ export default class App extends Component {
     );
   };
   inputContact = newContact => {
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, newContact],
-    }));
+    if (contacts.map(e => e.name.toLowerCase()).includes(name.toLowerCase())) {
+      return alert(`${name} is already in contacts`);
+    } else
+      this.setState(({ contacts }) => ({
+        contacts: [...contacts, newContact],
+      }));
   };
 
   filterChange = filter => this.setState({ filter });
@@ -49,7 +52,7 @@ export default class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <AddContact whenAdd={this.inputContact} nameValue={this.checkContact} />
+        <AddContact whenAdd={this.inputContact} nameValue={this.inputContact} />
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={this.filterChange} />
         <Contacts contacts={allContacts} contactRemove={this.removeContact} />
