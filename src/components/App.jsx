@@ -50,13 +50,13 @@ class App extends Component {
     const { filter } = this.state;
     const allContacts = this.getContacts();
     return (
-      <div>
+      <section>
         <h1>Phonebook</h1>
         <AddContact whenAdd={this.inputContact} />
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={this.filterChange} />
         <Contacts contacts={allContacts} contactRemove={this.removeContact} />
-      </div>
+      </section>
     );
   }
 }
