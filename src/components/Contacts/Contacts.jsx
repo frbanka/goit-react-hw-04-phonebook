@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import css from '../Contacts/Contacts.module.css';
 export const Contacts = ({ contacts, contactRemove, children }) => {
   return (
-    <section>
+    <section className={css.contacts__section}>
       <div>
         {children}
         <ul>
@@ -11,8 +12,8 @@ export const Contacts = ({ contacts, contactRemove, children }) => {
                 return (
                   <li key={contact.id}>
                     <p>
-                      <span>{contact.name} : </span>
-                      {contact.number}
+                      <span>{contact.name}: </span>
+                      <span id="number">{contact.number}</span>
                     </p>
                     <button
                       onClick={() => {

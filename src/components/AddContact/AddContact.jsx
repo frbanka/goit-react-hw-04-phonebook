@@ -1,6 +1,7 @@
 import { React, Component } from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
+import css from '../AddContact/AddContact.module.css';
 
 const MAIN_STATE = {
   name: '',
@@ -29,11 +30,12 @@ export class AddContact extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <section>
+      <section className={css.phonebook__section}>
         <div>
-          <form onSubmit={this.formSubmit}>
-            <label>Name</label>
+          <form onSubmit={this.formSubmit} className={css.phonebook}>
+            <label className={css.phonebook__label}>Name</label>
             <input
+              className={css.phonebook__input}
               type="text"
               name="name"
               value={name}
@@ -43,8 +45,9 @@ export class AddContact extends Component {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
             />
-            <label>Number</label>
+            <label className={css.phonebook__label}>Number</label>
             <input
+              className={css.phonebook__input}
               type="tel"
               id="number"
               name="number"
@@ -55,7 +58,9 @@ export class AddContact extends Component {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
             />
-            <button onClick={() => {}}>Add Contact</button>
+            <button onClick={() => {}} className={css.phonebook__button}>
+              Add Contact
+            </button>
           </form>
         </div>
       </section>
