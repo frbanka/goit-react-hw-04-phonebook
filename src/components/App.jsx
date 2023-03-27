@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AddContact from './AddContact/AddContact';
 import Contacts from './Contacts/Contacts';
 import Filter from './Filter/Filter';
-import css from '../index.css';
 
 class App extends Component {
   constructor() {
@@ -51,7 +50,7 @@ class App extends Component {
     const { filter } = this.state;
     const allContacts = this.getContacts();
     return (
-      <div className={css.main}>
+      <div>
         <h1>Phonebook</h1>
         <AddContact whenAdd={this.inputContact} />
         <h2>Contacts</h2>
