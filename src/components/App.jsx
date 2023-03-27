@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { AddContact } from './AddContact/AddContact';
-import { Contacts } from './Contacts/Contacts';
-import { Filter } from './Filter/Filter';
+import AddContact from './AddContact/AddContact';
+import Contacts from './Contacts/Contacts';
+import Filter from './Filter/Filter';
 import css from '../index.css';
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -61,3 +61,4 @@ export default class App extends Component {
     );
   }
 }
+export default App;

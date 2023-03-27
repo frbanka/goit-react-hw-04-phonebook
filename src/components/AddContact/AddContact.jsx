@@ -8,7 +8,7 @@ const MAIN_STATE = {
   number: '',
 };
 
-export class AddContact extends Component {
+class AddContact extends Component {
   state = MAIN_STATE;
 
   changeForm = ({ target }) => {

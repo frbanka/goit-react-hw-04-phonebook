@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import css from '../Contacts/Contacts.module.css';
-export const Contacts = ({ contacts, contactRemove, children }) => {
+const Contacts = ({ contacts, contactRemove, children }) => {
   return (
     <section className={css.contacts__section}>
       <div>
@@ -42,3 +42,4 @@ Contacts.propTypes = {
   ),
   contactRemove: PropTypes.func.isRequired,
 };
+export default Contacts;
