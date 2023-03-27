@@ -10,9 +10,6 @@ const MAIN_STATE = {
 export class AddContact extends Component {
   state = MAIN_STATE;
 
-  nameValue = e => this.setState({ name: e.target.value });
-  numberValue = e => this.setState({ number: e.target.value });
-
   changeForm = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
@@ -22,6 +19,7 @@ export class AddContact extends Component {
     e.preventDefault();
     const { name, number } = this.state;
     const { whenAdd } = this.props;
+
     whenAdd({ id: nanoid(), name, number });
     this.resetForm();
   };
@@ -65,7 +63,8 @@ export class AddContact extends Component {
   }
 }
 AddContact.propTypes = {
-  onAdd: PropTypes.func.isRequired,
-  nameValue: PropTypes.func.isRequired,
+  whenAdd: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  number: PropTypes.string,
 };
 export default AddContact;

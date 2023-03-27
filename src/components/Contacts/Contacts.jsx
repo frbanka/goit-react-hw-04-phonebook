@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export const Contacts = ({ contacts, contactRemove, children }) => {
   return (
     <section>
@@ -29,4 +30,14 @@ export const Contacts = ({ contacts, contactRemove, children }) => {
       </div>
     </section>
   );
+};
+Contacts.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  contactRemove: PropTypes.func.isRequired,
 };
