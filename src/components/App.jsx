@@ -45,7 +45,6 @@ class App extends Component {
     this.setState(({ contacts }) => ({
       contacts: contacts.filter(contact => contact.id !== id),
     }));
-
   render() {
     const { filter } = this.state;
     const allContacts = this.getContacts();
