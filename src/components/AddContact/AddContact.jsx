@@ -1,75 +1,73 @@
-import { React, Component } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import css from '../AddContact/AddContact.module.css';
 
-const MAIN_STATE = {
-  name: '',
-  number: '',
-};
+function AddContact({ inputContact }) {
+  const [id, setId] = useState('');
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-class AddContact extends Component {
-  state = MAIN_STATE;
-
-  changeForm = ({ target }) => {
-    const { name, value } = target;
-    this.setState({ [name]: value });
+  const changeFormName = e => {
+    setName(e.currentTarget.value);
+  };
+  const changeFormTel = e => {
+    setNumber(e.currentTarget.value);
   };
 
-  formSubmit = e => {
+  const formSubmit = e => {
     e.preventDefault();
-    const { name, number } = this.state;
-    const { whenAdd } = this.props;
-
-    whenAdd({ id: nanoid(), name, number });
-    this.resetForm();
+    addId();
+    inputContact({ id, name, number });
+    resetForm();
+  };
+  const addId = e => {
+    setId(nanoid(e));
+  };
+  const resetForm = () => {
+    setName('');
+    setNumber('');
   };
 
-  resetForm = () => this.setState(MAIN_STATE);
-
-  render() {
-    const { name, number } = this.state;
-    return (
-      <section className={css.phonebook__section}>
-        <div>
-          <form onSubmit={this.formSubmit} className={css.phonebook}>
-            <label className={css.phonebook__label}>Name</label>
-            <input
-              className={css.phonebook__input}
-              type="text"
-              name="name"
-              value={name}
-              onChange={this.changeForm}
-              placeholder="contact name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-            <label className={css.phonebook__label}>Number</label>
-            <input
-              className={css.phonebook__input}
-              type="tel"
-              id="number"
-              name="number"
-              placeholder="phone number"
-              onChange={this.changeForm}
-              value={number}
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-            />
-            <button onClick={() => {}} className={css.phonebook__button}>
-              Add Contact
-            </button>
-          </form>
-        </div>
-      </section>
-    );
-  }
+  return (
+    <section className={css.phonebook__section}>
+      <div>
+        <form onSubmit={formSubmit} className={css.phonebook}>
+          <label className={css.phonebook__label}>Name</label>
+          <input
+            className={css.phonebook__input}
+            type="text"
+            name="name"
+            value={name}
+            onChange={changeFormName}
+            placeholder="contact name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+          <label className={css.phonebook__label}>Number</label>
+          <input
+            className={css.phonebook__input}
+            type="tel"
+            name="number"
+            placeholder="phone number"
+            onChange={changeFormTel}
+            value={number}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+          <button onClick={formSubmit} className={css.phonebook__button}>
+            Add Contact
+          </button>
+        </form>
+      </div>
+    </section>
+  );
 }
+
 AddContact.propTypes = {
-  whenAdd: PropTypes.func.isRequired,
-  name: PropTypes.string,
-  number: PropTypes.string,
+  inputContact: PropTypes.func.isRequired,
 };
+
 export default AddContact;

@@ -8,20 +8,14 @@ const Contacts = ({ contacts, contactRemove, children }) => {
         <ul>
           {contacts.length === 0 ? null : (
             <>
-              {contacts.map(contact => {
+              {contacts.map(({ id, name, number }) => {
                 return (
-                  <li key={contact.id}>
+                  <li key={id}>
                     <p>
-                      <span>{contact.name}: </span>
-                      <span id="number">{contact.number}</span>
+                      <span>{name}: </span>
+                      <span id={id}>{number}</span>
                     </p>
-                    <button
-                      onClick={() => {
-                        contactRemove(contact.id);
-                      }}
-                    >
-                      remove
-                    </button>
+                    <button onClick={() => contactRemove(id)}>remove</button>
                   </li>
                 );
               })}
@@ -33,13 +27,7 @@ const Contacts = ({ contacts, contactRemove, children }) => {
   );
 };
 Contacts.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
+  contacts: PropTypes.array.isRequired,
   contactRemove: PropTypes.func.isRequired,
 };
 export default Contacts;
